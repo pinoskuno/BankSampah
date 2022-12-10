@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Jemput Sampah"
+                    android:text="@string/jemput_sampah"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Jenis Sampah"
+                    android:text="@string/jenis_sampah"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 

@@ -1,5 +1,35 @@
 <resources>
     <string name="app_name">BankSampah</string>
+    <string name="saldo_amp_riwayat_anda"><![CDATA[Saldo & Riwayat Anda]]></string>
+    <string name="menu_kategori">Menu Kategori</string>
+    <string name="msgMain">Aplikasi Bank Sampah adalah solusi untuk menyelesaikan masalah sosial tentang kebersihan lingkungan.</string>
+    <string name="txtMain">Tukarkan sampah plastikmu sekarang!</string>
+    <string name="welcome">Welcome</string>
+    <string name="jemput_sampah">Jemput Sampah</string>
+    <string name="isiData">Mohon isi data dibawah ini dengan benar</string>
+    <string name="txtNama">Nama Pengguna</string>
+    <string name="isiNama">Masukan nama lengkap</string>
+    <string name="txtKategori">Kategori Sampah</string>
+    <string name="txtBerat">Berat (Kg)</string>
+    <string name="txtNilai">5 Kg</string>
+    <string name="txtHarga">Harga (per Kg)</string>
+    <string name="txtTotal">Rp. 1500/Kg</string>
+    <string name="txtTanggal">Tanggal Penjemputan</string>
+    <string name="isiTanggal">Masukan tanggal</string>
+    <string name="txtAlamat">Alamat</string>
+    <string name="isiAlamat">Masukan alamat</string>
+    <string name="txtOpsional">Catatan Tambahan (Opsional)</string>
+    <string name="isiOpsional">Masukan catatan tambahan anda</string>
+    <string name="jenis_sampah">Jenis Sampah</string>
+    <string name="bank_sampah">Bank Sampah</string>
+    <string name="msgWelcome">Selamat datang di Aplikasi Bank Sampah</string>
+    <string name="login">Login</string>
+    <string name="daftar_akun">Daftar Akun</string>
+    <string name="sign_in">Sign In</string>
+    <string name="not_register">Not registered yet?</string>
+    <string name="create_account">Create Account</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="already_account">Already Account?</string>
     <string-array name="kategori_sampah">
         <item>Plastik</item>
         <item>Logam</item>
