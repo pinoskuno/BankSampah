@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">BankSampah</string>
+    <string-array name="kategori_sampah">
+        <item>Plastik</item>
+        <item>Logam</item>
+        <item>Kertas</item>
+        <item>Karet</item>
+    </string-array>
+    <string-array name="harga_perkilo">
+        <item>1500</item>
+        <item>3000</item>
+        <item>800</item>
+        <item>1000</item>
+    </string-array>
 </resources>
