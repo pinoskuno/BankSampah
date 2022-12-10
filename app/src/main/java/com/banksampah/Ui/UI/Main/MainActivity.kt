@@ -13,8 +13,12 @@ import android.view.View
 import android.view.WindowManager
 import androidx.core.app.ActivityCompat
 import com.banksampah.R
+import com.banksampah.Ui.UI.History.HistoryActivity
+import com.banksampah.Ui.UI.Post.pickUpActivity
+import com.banksampah.Ui.UI.sampah.tSampahActivity
 import im.delight.android.location.SimpleLocation
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_cv_main.*
 import java.io.IOException
 import java.util.*
 
@@ -52,17 +56,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun setInitLayout() {
         cvPickup.setOnClickListener { v: View? ->
-            val intent = Intent(this@MainActivity, InputDataActivity::class.java)
+            val intent = Intent(this@MainActivity, pickUpActivity::class.java)
             startActivity(intent)
         }
 
         cvCatagory.setOnClickListener { v: View? ->
-            val intent = Intent(this@MainActivity, JenisSampahActivity::class.java)
+            val intent = Intent(this@MainActivity, tSampahActivity::class.java)
             startActivity(intent)
         }
 
         cvHistory.setOnClickListener { v: View? ->
-            val intent = Intent(this@MainActivity, RiwayatActivity::class.java)
+            val intent = Intent(this@MainActivity, HistoryActivity::class.java)
             startActivity(intent)
         }
         cvLocation.setOnClickListener { v: View? ->
@@ -134,3 +138,4 @@ class MainActivity : AppCompatActivity() {
             window.attributes = layoutParams
         }
     }
+}

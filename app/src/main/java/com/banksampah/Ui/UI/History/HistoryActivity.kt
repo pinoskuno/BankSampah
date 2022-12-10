@@ -18,7 +18,7 @@ import com.banksampah.Ui.Data.Api.HistoryAdapterCallback
 import com.banksampah.Ui.Data.Function.rupiahFormat
 import com.banksampah.Ui.Data.Respons.UserR
 import kotlinx.android.synthetic.main.activity_history.*
-import java.util.ArrayList
+import java.util.*
 
 class HistoryActivity : AppCompatActivity(), HistoryAdapterCallback {
 
