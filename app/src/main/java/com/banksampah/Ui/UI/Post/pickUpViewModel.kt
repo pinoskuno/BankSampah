@@ -1,7 +1,8 @@
 package com.banksampah.Ui.UI.Post
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.AndroidViewModel
 import com.banksampah.Ui.Data.Client.ClientDB.Companion.getInstance
 import com.banksampah.Ui.Data.Dao.BankDao
 import com.banksampah.Ui.Data.Respons.UserR

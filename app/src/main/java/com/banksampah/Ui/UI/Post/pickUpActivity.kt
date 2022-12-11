@@ -26,7 +26,7 @@ import java.util.*
 
 class pickUpActivity : AppCompatActivity() {
 
-    lateinit var _pickupVM: ActivityPickUpBinding
+    lateinit var _pickupVM: pickUpViewModel
     lateinit var _name: String
     lateinit var _date: String
     lateinit var _address: String
@@ -42,31 +42,23 @@ class pickUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pick_up)
-        setStatusBar()
-        setToolbar()
-        setInitLayout()
-        setInputData()
-    }
-
-    private fun setToolbar() {
         setSupportActionBar(toolbar)
         if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
-    }
 
-    private fun setInitLayout() {
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
         _category = resources.getStringArray(R.array.kategori_sampah)
         _price = resources.getStringArray(R.array.harga_perkilo)
-
         _pickupVM = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.application)).get(pickUpViewModel::class.java)
-
         val languageA = ArrayAdapter(this@pickUpActivity, android.R.layout.simple_list_item_1, _category)
         languageA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spKategori.setAdapter(languageA)
+        spKategori.adapter = languageA
 
-        spKategori.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spKategori.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
                 view: View,
@@ -75,10 +67,10 @@ class pickUpActivity : AppCompatActivity() {
             ) {
                 _trashCategory = parent.getItemAtPosition(position).toString()
                 _selectedPrice = _price[position]
-                spKategori.setEnabled(true)
+                spKategori.isEnabled = true
                 countPrice = _selectedPrice.toInt()
-                if (inputBerat.getText().toString() != "") {
-                    countWeigh = inputBerat.getText().toString().toInt()
+                if (inputBerat.text.toString() != "") {
+                    countWeigh = inputBerat.text.toString().toInt()
                     setTotalPrice(countWeigh)
                 } else {
                     inputHarga.setText(rupiahFormat(countPrice))
@@ -86,7 +78,7 @@ class pickUpActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>?) {}
-        })
+        }
 
         inputBerat.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
@@ -121,14 +113,7 @@ class pickUpActivity : AppCompatActivity() {
                 pickupDate[Calendar.DAY_OF_MONTH]
             ).show()
         }
-    }
 
-    private fun setTotalPrice(weigh: Int) {
-        countTotal = countPrice * weigh
-        inputHarga.setText(rupiahFormat(countTotal))
-    }
-
-    private fun setInputData() {
         btnCheckout.setOnClickListener { v: View? ->
             _name = inputNama.text.toString()
             _date = inputTanggal.text.toString()
@@ -160,16 +145,12 @@ class pickUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun setStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
-        if (Build.VERSION.SDK_INT >= 21) {
-            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
-            window.statusBarColor = Color.TRANSPARENT
-        }
+
+    private fun setTotalPrice(weigh: Int) {
+        countTotal = countPrice * weigh
+        inputHarga.setText(rupiahFormat(countTotal))
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {

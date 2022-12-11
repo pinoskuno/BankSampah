@@ -8,28 +8,14 @@ import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "userBankSampah")
 @Parcelize
-data class UserR(@PrimaryKey(autoGenerate = true)
-                 var uid: Int = 0,
-
-                 @ColumnInfo(name = "nama_pengguna")
-                 var namaPengguna: String,
-
-                 @ColumnInfo(name = "jenis_sampah")
-                 var jenisSampah: String,
-
-                 @ColumnInfo(name = "berat")
-                 var berat: Int = 0,
-
-                 @ColumnInfo(name = "harga")
-                 var harga: Int = 0,
-
-                 @ColumnInfo(name = "tanggal")
-                 var tanggal: String,
-
-                 @ColumnInfo(name = "alamat")
-                 var alamat: String,
-
-                 @ColumnInfo(name = "catatan")
-                 var catatan: String
-
+data class UserR(
+    @PrimaryKey(autoGenerate = true)
+    var uid: Int = 0,
+    @ColumnInfo(name = "nama_pengguna") var namaPengguna: String,
+    @ColumnInfo(name = "jenis_sampah") var jenisSampah: String,
+    @ColumnInfo(name = "berat") var berat: Int = 0,
+    @ColumnInfo(name = "harga") var harga: Int = 0,
+    @ColumnInfo(name = "tanggal") var tanggal: String,
+    @ColumnInfo(name = "alamat") var alamat: String,
+    @ColumnInfo(name = "catatan") var catatan: String
 ) : Parcelable

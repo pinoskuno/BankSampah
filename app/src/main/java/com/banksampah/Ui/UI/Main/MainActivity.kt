@@ -9,6 +9,8 @@ import android.location.Geocoder
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import androidx.core.app.ActivityCompat
@@ -16,6 +18,10 @@ import com.banksampah.R
 import com.banksampah.Ui.UI.History.HistoryActivity
 import com.banksampah.Ui.UI.Post.pickUpActivity
 import com.banksampah.Ui.UI.sampah.tSampahActivity
+import com.banksampah.Ui.UI.welcome.WelcomeActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import im.delight.android.location.SimpleLocation
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_cv_main.*
@@ -23,6 +29,9 @@ import java.io.IOException
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    lateinit var auth : FirebaseAuth
+    var databaseReference: DatabaseReference? = null
+    var database: FirebaseDatabase? = null
     var REQ_PERMISSION = 100
     var strCurrentLatitude = 0.0
     var strCurrentLongitude = 0.0
@@ -32,12 +41,32 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        auth = FirebaseAuth.getInstance()
+        databaseReference = database?.reference!!.child("Profile")
+        database = FirebaseDatabase.getInstance()
         setPermission()
         setStatusBar()
         setLocation()
         setInitLayout()
         setCurrentLocation()
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.top_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_logout -> {
+                auth.signOut()
+                val i = Intent(this, WelcomeActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(i)
+                return true
+            }
+            else -> return true
+        }
     }
 
     private fun setLocation() {
@@ -70,7 +99,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         cvLocation.setOnClickListener { v: View? ->
-            val intent = Intent(this@MainActivity, RiwayatActivity::class.java)
+            val intent = Intent(this@MainActivity, HistoryActivity::class.java)
             startActivity(intent)
         }
     }
@@ -108,8 +137,8 @@ class MainActivity : AppCompatActivity() {
             val addressList = geocoder.getFromLocation(strCurrentLatitude, strCurrentLongitude, 1)
             if (addressList != null && addressList.size > 0) {
                 val strCurrentLocation = addressList[0].locality
-                tvCurrentLocation.text = strCurrentLocation
-                tvCurrentLocation.isSelected = true
+                tv_loaction.text = strCurrentLocation
+                tv_loaction.isSelected = true
             }
         } catch (e: IOException) {
             e.printStackTrace()
@@ -117,13 +146,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        }
-        if (Build.VERSION.SDK_INT >= 21) {
-            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
-            window.statusBarColor = Color.TRANSPARENT
-        }
+
     }
 
     companion object {

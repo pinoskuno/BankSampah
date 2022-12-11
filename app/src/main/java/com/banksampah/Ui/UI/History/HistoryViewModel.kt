@@ -11,7 +11,6 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class HistoryViewModel (application: Application) : AndroidViewModel(application) {
-
     var _totalBalance: LiveData<Int>
     var dataBank: LiveData<List<UserR>>
     var databaseDao: BankDao?
@@ -24,7 +23,6 @@ class HistoryViewModel (application: Application) : AndroidViewModel(application
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
     }
-
     init {
         databaseDao = getInstance(application)?.appDatabase?.databaseDao()
         dataBank = databaseDao!!.getAll()

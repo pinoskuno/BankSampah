@@ -9,20 +9,20 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.banksampah.R
-import com.banksampah.Ui.Data.Api.HistoryAdapterCallback
-import com.banksampah.Ui.Data.DataLocal.LocalDatabase
+import com.banksampah.Ui.Data.Api.History
 import com.banksampah.Ui.Data.Function.rupiahFormat
 import com.banksampah.Ui.Data.Respons.UserR
 import kotlinx.android.synthetic.main.item_history.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
-class HistoryAdapter (
-    var mContext: Context,
-    modelInputList: MutableList<UserR>,
-    adapterCallback: HistoryAdapterCallback
+class HistoryAdapter (var mContext: Context,
+                      modelInputList: MutableList<UserR>,
+                      adapterCallback: History
 ) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
     var modelDatabase: MutableList<UserR>
-    var mAdapterCallback: HistoryAdapterCallback
+    var mAdapterCallback: History
 
     fun setDataAdapter(items: List<UserR>) {
         modelDatabase.clear()
@@ -37,19 +37,21 @@ class HistoryAdapter (
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data: UserR = modelDatabase[position]
+        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val currentDate = sdf.format(Date())
 
-        holder.tvNama.setText(data.namaPengguna)
-        holder.tvDate.setText(data.tanggal)
+        holder.tvNama.text = data.namaPengguna
+        holder.tvDate.text = data.tanggal
         holder.tvKategori.text = "Sampah " + data.jenisSampah
         holder.tvBerat.text = "Berat : " + data.berat.toString() + " Kg"
         holder.tvSaldo.text = "Pendapatan : " + rupiahFormat(data.harga)
 
-        if (data.berat < 5) {
+        if (data.tanggal < currentDate) {
             holder.tvStatus.setTextColor(ContextCompat.getColor(mContext, R.color.red))
-            holder.tvStatus.text = "Masih dalam proses"
+            holder.tvStatus.text = "Penjemputan Berhasil!"
         } else {
             holder.tvStatus.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary))
-            holder.tvStatus.text = "Sudah di konfirmasi"
+            holder.tvStatus.text = "Masih dalam Proses !"
         }
     }
 
@@ -67,13 +69,12 @@ class HistoryAdapter (
         var imageDelete: ImageView = itemView.imageDelete
 
         init {
-            imageDelete.setOnClickListener { view: View? ->
+            imageDelete.setOnClickListener {
                 val modelLaundry: UserR = modelDatabase[adapterPosition]
                 mAdapterCallback.onDelete(modelLaundry)
             }
         }
     }
-
 
 
     init {
