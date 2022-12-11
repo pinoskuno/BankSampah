@@ -1,18 +1,18 @@
 <resources>
-    <string name="app_name">BankSampah</string>
-    <string name="saldo_amp_riwayat_anda"><![CDATA[Saldo & Riwayat Anda]]></string>
-    <string name="menu_kategori">Menu Kategori</string>
-    <string name="msgMain">Aplikasi Bank Sampah adalah solusi untuk menyelesaikan masalah sosial tentang kebersihan lingkungan.</string>
-    <string name="txtMain">Tukarkan sampah plastikmu sekarang!</string>
-    <string name="welcome">Welcome</string>
-    <string name="jemput_sampah">Jemput Sampah</string>
-    <string name="isiData">Mohon isi data dibawah ini dengan benar</string>
-    <string name="txtNama">Nama Pengguna</string>
-    <string name="isiNama">Masukan nama lengkap</string>
-    <string name="txtKategori">Kategori Sampah</string>
-    <string name="txtBerat">Berat (Kg)</string>
-    <string name="txtNilai">5 Kg</string>
-    <string name="txtHarga">Harga (per Kg)</string>
+    <string name="app_name" translatable="false">BankSampah</string>
+    <string name="saldo_amp_riwayat_anda" translatable="false"><![CDATA[Saldo & Riwayat Anda]]></string>
+    <string name="menu_kategori" translatable="false">Menu Kategori</string>
+    <string name="msgMain" translatable="false">Aplikasi Bank Sampah adalah solusi untuk menyelesaikan masalah sosial tentang kebersihan lingkungan.</string>
+    <string name="txtMain" translatable="false">Tukarkan sampah plastikmu sekarang!</string>
+    <string name="welcome" translatable="false">Welcome</string>
+    <string name="jemput_sampah" translatable="false">Jemput Sampah</string>
+    <string name="isiData" translatable="false">Mohon isi data dibawah ini dengan benar</string>
+    <string name="txtNama" translatable="false">Nama Pengguna</string>
+    <string name="isiNama" translatable="false">Masukan nama lengkap</string>
+    <string name="txtKategori" translatable="false">Kategori Sampah</string>
+    <string name="txtBerat" translatable="false">Berat (Kg)</string>
+    <string name="txtNilai" translatable="false">5 Kg</string>
+    <string name="txtHarga" translatable="false">Harga (per Kg)</string>
     <string name="txtTotal">Rp. 1500/Kg</string>
     <string name="txtTanggal">Tanggal Penjemputan</string>
     <string name="isiTanggal">Masukan tanggal</string>
@@ -67,6 +67,12 @@
     <string name="password_login">\"Please enter your Password \"</string>
     <string name="login_failed">\"Login Failed, Please Check your data \"</string>
     <string name="title_sampah">Jenis Sampah</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="saldo_dan_history">Saldo dan History</string>
+    <string name="saldo_dan_historys">d</string>
+    <string name="jemput_sekarang">Jemput Sekarang</string>
+    <string name="saldo_anda">Saldo Anda :</string>
+    <string name="Empty">Empty</string>
 
     <string-array name="kategori_sampah">
         <item>Plastik</item>

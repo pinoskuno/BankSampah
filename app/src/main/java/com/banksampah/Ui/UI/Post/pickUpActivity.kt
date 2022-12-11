@@ -1,24 +1,19 @@
 package com.banksampah.Ui.UI.Post
 
-import android.app.Activity
 import android.app.DatePickerDialog
-import android.graphics.Color
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.banksampah.R
 import com.banksampah.Ui.Data.Function.rupiahFormat
-import com.banksampah.databinding.ActivityPickUpBinding
 import kotlinx.android.synthetic.main.activity_pick_up.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -68,33 +63,33 @@ class pickUpActivity : AppCompatActivity() {
                 _selectedPrice = _price[position]
                 spKategori.isEnabled = true
                 countPrice = _selectedPrice.toInt()
-                if (inputBerat.text.toString() != "") {
-                    countWeigh = inputBerat.text.toString().toInt()
+                if (ed_pickup_weight.text.toString() != "") {
+                    countWeigh = ed_pickup_weight.text.toString().toInt()
                     setTotalPrice(countWeigh)
                 } else {
-                    inputHarga.setText(rupiahFormat(countPrice))
+                    ed_picup_price.setText(rupiahFormat(countPrice))
                 }
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>?) {}
         }
 
-        inputBerat.addTextChangedListener(object : TextWatcher {
+        ed_pickup_weight.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(editable: Editable) {
-                inputBerat.removeTextChangedListener(this)
+                ed_pickup_weight.removeTextChangedListener(this)
                 if (editable.length > 0) {
                     countWeigh = editable.toString().toInt()
                     setTotalPrice(countWeigh)
                 } else {
-                    inputHarga.setText(rupiahFormat(countPrice))
+                    ed_picup_price.setText(rupiahFormat(countPrice))
                 }
-                inputBerat.addTextChangedListener(this)
+                ed_pickup_weight.addTextChangedListener(this)
             }
         })
 
-        inputTanggal.setOnClickListener { view: View? ->
+        ed_pickup_dade.setOnClickListener { view: View? ->
             val pickupDate = Calendar.getInstance()
             val date =
                 DatePickerDialog.OnDateSetListener { view1: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
@@ -103,7 +98,7 @@ class pickUpActivity : AppCompatActivity() {
                     pickupDate[Calendar.DAY_OF_MONTH] = dayOfMonth
                     val strFormatDefault = "d MMMM yyyy"
                     val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
-                    inputTanggal.setText(simpleDateFormat.format(pickupDate.time))
+                    ed_pickup_dade.setText(simpleDateFormat.format(pickupDate.time))
                 }
             DatePickerDialog(
                 this@pickUpActivity, date,
@@ -114,10 +109,10 @@ class pickUpActivity : AppCompatActivity() {
         }
 
         btnCheckout.setOnClickListener { v: View? ->
-            _name = inputNama.text.toString()
-            _date = inputTanggal.text.toString()
-            _address = inputAlamat.text.toString()
-            _note = inputTambahan.text.toString()
+            _name = ed_pickup_name.text.toString()
+            _date = ed_pickup_dade.text.toString()
+            _address = ed_pickpu_address.text.toString()
+            _note = ed_pickup_detail.text.toString()
             if (_name.isEmpty() or _date.isEmpty() or _address.isEmpty() or (_category.size == 0) or (countWeigh == 0) or (countPrice == 0)) {
                 Toast.makeText(
                     this@pickUpActivity,
@@ -147,7 +142,7 @@ class pickUpActivity : AppCompatActivity() {
 
     private fun setTotalPrice(weigh: Int) {
         countTotal = countPrice * weigh
-        inputHarga.setText(rupiahFormat(countTotal))
+        ed_picup_price.setText(rupiahFormat(countTotal))
     }
 
 
@@ -157,19 +152,6 @@ class pickUpActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    companion object {
-        fun setWindowFlag(activity: Activity, bits: Int, on: Boolean) {
-            val window = activity.window
-            val layoutParams = window.attributes
-            if (on) {
-                layoutParams.flags = layoutParams.flags or bits
-            } else {
-                layoutParams.flags = layoutParams.flags and bits.inv()
-            }
-            window.attributes = layoutParams
-        }
     }
 
 }

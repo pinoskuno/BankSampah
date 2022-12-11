@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -16,17 +15,14 @@ import kotlinx.android.synthetic.main.item_history.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HistoryAdapter (var mContext: Context,
-                      modelInputList: MutableList<UserR>,
-                      adapterCallback: History
-) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
-
-    var modelDatabase: MutableList<UserR>
-    var mAdapterCallback: History
+class HistoryAdapter (
+    var _context: Context, _listInput: MutableList<UserR>, adapterCallback: History) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+    var _userDB: MutableList<UserR>
+    var _historyDB: History
 
     fun setDataAdapter(items: List<UserR>) {
-        modelDatabase.clear()
-        modelDatabase.addAll(items)
+        _userDB.clear()
+        _userDB.addAll(items)
         notifyDataSetChanged()
     }
 
@@ -36,50 +32,40 @@ class HistoryAdapter (var mContext: Context,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data: UserR = modelDatabase[position]
+        val data: UserR = _userDB[position]
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
         val currentDate = sdf.format(Date())
-
-        holder.tvNama.text = data.namaPengguna
-        holder.tvDate.text = data.tanggal
-        holder.tvKategori.text = "Sampah " + data.jenisSampah
-        holder.tvBerat.text = "Berat : " + data.berat.toString() + " Kg"
-        holder.tvSaldo.text = "Pendapatan : " + rupiahFormat(data.harga)
-
-        if (data.tanggal < currentDate) {
-            holder.tvStatus.setTextColor(ContextCompat.getColor(mContext, R.color.red))
-            holder.tvStatus.text = "Penjemputan Berhasil!"
+        
+        holder._tvusername.text = data.username
+        holder._tvdate.text = data.date
+        holder._tvcategory.text = "Sampah " + data.type
+        holder._tvweight.text = "Berat : " + data.weight.toString() + " Kg"
+        holder._tvprice.text = "Pendapatan : " + rupiahFormat(data.price)
+        if (data.date < currentDate) {
+            holder._tvStatus.setTextColor(ContextCompat.getColor(_context, R.color.red))
+            holder._tvStatus.text = "Penjemputan Berhasil!"
         } else {
-            holder.tvStatus.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary))
-            holder.tvStatus.text = "Masih dalam Proses !"
+            holder._tvStatus.setTextColor(ContextCompat.getColor(_context, R.color.colorPrimary))
+            holder._tvStatus.text = "Masih dalam Proses !"
         }
     }
 
     override fun getItemCount(): Int {
-        return modelDatabase.size
+        return _userDB.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var tvNama: TextView = itemView.tvNama
-        var tvDate: TextView = itemView.tvDate
-        var tvKategori: TextView = itemView.tvKategori
-        var tvBerat: TextView = itemView.tvBerat
-        var tvSaldo: TextView = itemView.tvSaldo
-        var tvStatus: TextView = itemView.tvStatus
-        var imageDelete: ImageView = itemView.imageDelete
-
-        init {
-            imageDelete.setOnClickListener {
-                val modelLaundry: UserR = modelDatabase[adapterPosition]
-                mAdapterCallback.onDelete(modelLaundry)
-            }
-        }
+        var _tvusername: TextView = itemView.tv_item_name
+        var _tvdate: TextView = itemView.tv_item_date
+        var _tvcategory: TextView = itemView.tv_item_category
+        var _tvweight: TextView = itemView.tv_item_weight
+        var _tvprice: TextView = itemView.tv_item_balace
+        var _tvStatus: TextView = itemView.tv_item_stat
     }
-
-
+    
     init {
-        modelDatabase = modelInputList
-        mAdapterCallback = adapterCallback
+        _userDB = _listInput
+        _historyDB = adapterCallback
     }
 
 }

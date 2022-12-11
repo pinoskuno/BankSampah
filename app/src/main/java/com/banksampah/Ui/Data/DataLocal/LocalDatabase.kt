@@ -8,5 +8,5 @@ import com.banksampah.Ui.Data.Respons.UserR
 
 @Database(entities = [UserR::class], version = 1, exportSchema = false)
 abstract class LocalDatabase : RoomDatabase() {
-    abstract fun databaseDao(): BankDao?
+    abstract fun bankDao(): BankDao?
 }

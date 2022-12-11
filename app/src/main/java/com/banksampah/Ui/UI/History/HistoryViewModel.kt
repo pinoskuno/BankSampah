@@ -13,20 +13,20 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class HistoryViewModel (application: Application) : AndroidViewModel(application) {
     var _totalBalance: LiveData<Int>
     var dataBank: LiveData<List<UserR>>
-    var databaseDao: BankDao?
+    var _bankDao: BankDao?
 
     fun deleteDataById(uid: Int) {
         Completable.fromAction {
-            databaseDao?.deleteSingleData(uid)
+            _bankDao?.deleteSingleData(uid)
         }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
     }
     init {
-        databaseDao = getInstance(application)?.appDatabase?.databaseDao()
-        dataBank = databaseDao!!.getAll()
-        _totalBalance = databaseDao!!.getSaldo()
+        _bankDao = getInstance(application)?.appDatabase?.bankDao()
+        dataBank = _bankDao!!.getAll()
+        _totalBalance = _bankDao!!.getSaldo()
     }
 
 }

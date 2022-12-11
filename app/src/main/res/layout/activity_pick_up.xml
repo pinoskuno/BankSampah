@@ -78,7 +78,7 @@
                             android:textSize="14sp" />
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/inputNama"
+                            android:id="@+id/ed_pickup_name"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:backgroundTint="@color/colorPrimary"
@@ -159,7 +159,7 @@
                                 android:textSize="14sp" />
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/inputBerat"
+                               android:id="@+id/ed_pickup_weight"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:backgroundTint="@color/colorPrimary"
@@ -187,7 +187,7 @@
                                 android:textSize="14sp" />
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/inputHarga"
+                                android:id="@+id/ed_picup_price"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:backgroundTint="@color/colorPrimary"
@@ -222,7 +222,7 @@
                                 android:textSize="14sp" />
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/inputTanggal"
+                                android:id="@+id/ed_pickup_dade"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:backgroundTint="@color/colorPrimary"
@@ -255,7 +255,7 @@
                             android:textSize="14sp" />
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/inputAlamat"
+                            android:id="@+id/ed_pickpu_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/colorPrimary"
@@ -286,7 +286,7 @@
                             android:textSize="14sp" />
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/inputTambahan"
+                            android:id="@+id/ed_pickup_detail"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:backgroundTint="@color/colorPrimary"
@@ -308,7 +308,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="30dp"
-                android:text="Jemput Sekarang"
+                android:text="@string/jemput_sekarang"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"

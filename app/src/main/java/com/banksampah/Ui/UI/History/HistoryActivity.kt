@@ -1,11 +1,8 @@
 package com.banksampah.Ui.UI.History
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +11,6 @@ import com.banksampah.Ui.Data.Api.History
 import com.banksampah.Ui.Data.Function.rupiahFormat
 import com.banksampah.Ui.Data.Respons.UserR
 import kotlinx.android.synthetic.main.activity_history.*
-import java.util.*
 
 class HistoryActivity : AppCompatActivity(), History {
 
@@ -40,20 +36,19 @@ class HistoryActivity : AppCompatActivity(), History {
 
         _HistoryVM = ViewModelProviders.of(this).get(HistoryViewModel::class.java)
 
-//        _HistoryVM = ViewModelProviders.of(this).get(HistoryViewModel::class.java)
 
-        _HistoryVM._totalBalance.observe(this, { integer ->
+        _HistoryVM._totalBalance.observe(this) { integer ->
             if (integer == null) {
                 val _totalBalance = 0
                 val balance = rupiahFormat(_totalBalance)
-                tvSaldo.text = balance
+                tv_history_balace.text = balance
             } else {
                 val balance = rupiahFormat(integer)
-                tvSaldo.text = balance
+                tv_history_balace.text = balance
             }
-        })
+        }
 
-        _HistoryVM.dataBank.observe(this, { modelDatabases: List<UserR> ->
+        _HistoryVM.dataBank.observe(this) { modelDatabases: List<UserR> ->
             if (modelDatabases.isEmpty()) {
                 tvNotFound.visibility = View.VISIBLE
                 rvHistory.visibility = View.GONE
@@ -62,22 +57,11 @@ class HistoryActivity : AppCompatActivity(), History {
                 rvHistory.visibility = View.VISIBLE
             }
             _historyA.setDataAdapter(modelDatabases)
-        })
+        }
 
     }
 
     override fun onDelete(modelDatabase: UserR?) {
-        val alertDialogBuilder = AlertDialog.Builder(this)
-        alertDialogBuilder.setMessage("Hapus riwayat ini?")
-        alertDialogBuilder.setPositiveButton("Ya, Hapus") { dialogInterface: DialogInterface?, i: Int ->
-            val uid = modelDatabase!!.uid
-            _HistoryVM.deleteDataById(uid)
-            Toast.makeText(this@HistoryActivity, "Data yang dipilih sudah dihapus", Toast.LENGTH_SHORT).show()
-        }
-
-        alertDialogBuilder.setNegativeButton("Batal") { dialogInterface: DialogInterface, i: Int -> dialogInterface.cancel() }
-        val alertDialog = alertDialogBuilder.create()
-        alertDialog.show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

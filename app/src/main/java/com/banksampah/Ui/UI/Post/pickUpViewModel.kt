@@ -11,27 +11,27 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class pickUpViewModel (application: Application) : AndroidViewModel(application) {
 
-    var databaseDao: BankDao?
+    var _bankDao: BankDao?
 
     fun addDataSampah(
-        nama_pengguna: String,
-        jenis_sampah: String,
-        berat: Int,
-        harga: Int,
-        tanggal: String,
-        alamat: String,
-        catatan: String
+        _username: String,
+        _type: String,
+        _weight: Int,
+        _price: Int,
+        _date: String,
+        _address: String,
+        _notes: String
     ) {
         Completable.fromAction {
             val _userR = UserR(
-                    namaPengguna = nama_pengguna,
-                    jenisSampah = jenis_sampah,
-                    berat = berat,
-                    harga = harga,
-                    tanggal = tanggal,
-                    alamat = alamat,
-                    catatan = catatan)
-            databaseDao?.insertData(_userR)
+                    username = _username,
+                    type = _type,
+                    weight = _weight,
+                    price = _price,
+                    date = _date,
+                    address = _address,
+                    notes = _notes)
+            _bankDao?.insertData(_userR)
         }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -39,7 +39,7 @@ class pickUpViewModel (application: Application) : AndroidViewModel(application)
     }
 
     init {
-        databaseDao = getInstance(application)?.appDatabase?.databaseDao()
+        _bankDao = getInstance(application)?.appDatabase?.bankDao()
     }
 
 }
