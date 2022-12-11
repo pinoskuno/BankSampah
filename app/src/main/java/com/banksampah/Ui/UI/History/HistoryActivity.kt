@@ -1,6 +1,5 @@
 package com.banksampah.Ui.UI.History
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.MenuItem
@@ -8,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.banksampah.R
 import com.banksampah.Ui.Data.Api.History
@@ -40,6 +40,8 @@ class HistoryActivity : AppCompatActivity(), History {
         rvHistory.adapter = _historyA
 
         _HistoryVM = ViewModelProviders.of(this).get(HistoryViewModel::class.java)
+
+//        _HistoryVM = ViewModelProviders.of(this).get(HistoryViewModel::class.java)
 
         _HistoryVM._totalBalance.observe(this, { integer ->
             if (integer == null) {
