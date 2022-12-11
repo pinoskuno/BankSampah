@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.banksampah.R
 import com.banksampah.Ui.UI.Main.MainActivity
+import com.banksampah.Ui.UI.welcome.WelcomeActivity
 import com.banksampah.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
@@ -17,23 +18,26 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     private lateinit var binding :ActivityLoginBinding
+    private var email =""
+    private val password = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
+        playAnimation()
         checksession()
         btnSign()
-        playAnimation()
 
     }
     private fun btnSign() {
         loginButton.setOnClickListener {
             if (TextUtils.isEmpty(ed_login_email.text.toString())){
-                ed_login_email.setError("Please enter your Email ")
+                ed_login_email.setError(getString(R.string.email_login))
                 return@setOnClickListener
             }else if (TextUtils.isEmpty(ed_login_password.text.toString())){
-                ed_login_password.setError("Please enter your Password ")
+                ed_login_password.setError(getString(R.string.password_login))
                 return@setOnClickListener
             }
             auth.signInWithEmailAndPassword(ed_login_email.text.toString(),ed_login_password.text.toString())
@@ -45,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     else{
                         showLoading(false)
-                        Toast.makeText(this@LoginActivity,"Login Failed, Please Check your data ", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity,getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
                     }
                 }
         }
@@ -60,6 +64,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun checksession(){
         val session = auth.currentUser
         if (session != null){

@@ -1,22 +1,19 @@
 package com.banksampah.Ui.UI.Main
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.location.Geocoder
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.banksampah.R
 import com.banksampah.Ui.UI.History.HistoryActivity
 import com.banksampah.Ui.UI.Post.pickUpActivity
+import com.banksampah.Ui.UI.login.LoginActivity
 import com.banksampah.Ui.UI.sampah.tSampahActivity
 import com.banksampah.Ui.UI.welcome.WelcomeActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -44,11 +41,8 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         databaseReference = database?.reference?.child("Profile")
         database = FirebaseDatabase.getInstance()
-        setPermission()
-        setStatusBar()
-        setLocation()
-        setInitLayout()
-        setCurrentLocation()
+        checksession()
+
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
@@ -150,16 +144,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    companion object {
-        fun setWindowFlag(activity: Activity, bits: Int, on: Boolean) {
-            val window = activity.window
-            val layoutParams = window.attributes
-            if (on) {
-                layoutParams.flags = layoutParams.flags or bits
-            } else {
-                layoutParams.flags = layoutParams.flags and bits.inv()
-            }
-            window.attributes = layoutParams
+    private fun checksession(){
+        val session = auth.currentUser
+        if (session != null){
+            setPermission()
+            setStatusBar()
+            setLocation()
+            setInitLayout()
+            setCurrentLocation()
         }
+        else{
+            startActivity(Intent(this,WelcomeActivity::class.java))
+            finish()
+        }
+    }
+    companion object {
+
     }
 }

@@ -21,7 +21,6 @@ class tSampahActivity : AppCompatActivity() {
     }
 
     private fun setToolbar() {
-        setSupportActionBar(tBar)
         if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
