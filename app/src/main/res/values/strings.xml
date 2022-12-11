@@ -33,6 +33,36 @@
     <string name="deskripsi_jenis">Sampah merupakan hasil produksi manusia yang tidak akan pernah luput dari kehidupan sehari-hari. Lalu, jenis-jenis sampah apa yang biasanya kita hasilkan? Yuk, kenali di sini.\n\nSampah jika dibiarkan saja akan mengganggu kebersihan lingkungan secara umum. Sampah dapat dibedakan menjadi dua macam, yaitu:</string>
     <string name="anorganik"><b>1. Sampah Padat (Anorganik)</b>\n\nSampah anorganik adalah sampah yang terdiri atas bahan-bahan anorganik. Contoh bahan-bahan anorganik adalah bahan logam, plastik, kaca, karet, dan kaleng. Sifat sampah anorganik adalah tahan lama dan sukar membusuk.\n\nSampah ini tidak mudah diuraikan oleh mikroorganisme tanah. Apabila dibuang sembarangan, sampah anorganik dapat menimbulkan pencemaran tanah.</string>
     <string name="organik"><b>2. Sampah Basah (Organik)</b>\n\nSampah organik adalah sampah yang terdiri atas bahan-bahan organik. Sifat sampah organik adalah tidak tahan lama dan cepat membusuk. Biasanya sampah jenis ini berasal dari makhluk hidup. Contohnya adalah sayur-sayuran, buah-buah yang membusuk, sisa nasi, daun, dan sebagainya.\n\nSampah organik mudah diuraikan mikroorganisme tanah. Hanya saja jenis sampah akan menimbulkan bau kurang sedap jika tidak dikelola dengan baik.</string>
+    <string name="upload_by">Upload By :</string>
+    <string name="date">Date :</string>
+    <string name="date_upload">Date Upload</string>
+    <string name="name">Name</string>
+    <string name="Date">Tanggal</string>
+    <string name="image">Gambar</string>
+    <string name="singup">Singup</string>
+    <string name="detail_row_photo">Detail row photo</string>
+    <string name="welcome_photo">Welcome Photo</string>
+    <string name="title_welcome">Welcome to Gramp Apps</string>
+    <string name="detail_photo">Detail Photo</string>
+    <string name="detail_post_date">Post Date</string>
+    <string name="samplle">Tanggal</string>
+    <string name="detail_descripton">Description</string>
+    <string name="upload_name">Upload Name</string>
+    <string name="title_login_page">Enjoy Story</string>
+    <string name="message_loading">Selamat membaca!</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="singup_message">Silahkan isi data terlebih dahulu</string>
+    <string name="Singup_singup">Singup</string>
+    <string name="newstory_photo">NewStory Photo</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="gallery">Gallery</string>
+    <string name="newstory_description">Description</string>
+    <string name="post">Post</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_nama">Nama</string>
+    <string name="location">Location</string>
 
     <string-array name="kategori_sampah">
         <item>Plastik</item>

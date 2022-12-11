@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         auth = FirebaseAuth.getInstance()
-        databaseReference = database?.reference!!.child("Profile")
+        databaseReference = database?.reference?.child("Profile")
         database = FirebaseDatabase.getInstance()
         setPermission()
         setStatusBar()
